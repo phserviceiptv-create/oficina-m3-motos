@@ -2,9 +2,10 @@
 
 import { FormEvent, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import { getSupabaseBrowserClient } from "../lib/supabase/client";
 
 const WHATSAPP = "5585992913882";
+const SUPABASE_URL = "https://gauegoqvroihyvgaunhr.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_0lpkrYNuNENVjepD3NPevQ_YSa5Yb9p";
 
 type Props = {
   serviceName?: string;
@@ -40,18 +41,26 @@ export default function LeadForm({ serviceName = "" }: Props) {
     );
 
     try {
-      const supabase = getSupabaseBrowserClient();
-      const { error } = await supabase.from("leads").insert({
-        name: name.slice(0, 120),
-        phone: phone.slice(0, 40),
-        motorcycle_model: motorcycleModel.slice(0, 120),
-        service_name: service ? service.slice(0, 120) : null,
-        message: message ? message.slice(0, 1000) : null,
-        source: "website",
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          name: name.slice(0, 120),
+          phone: phone.slice(0, 40),
+          motorcycle_model: motorcycleModel.slice(0, 120),
+          service_name: service ? service.slice(0, 120) : null,
+          message: message ? message.slice(0, 1000) : null,
+          source: "website",
+        }),
       });
 
-      if (error) {
-        console.error("Supabase lead insert failed:", error.message);
+      if (!response.ok) {
+        console.error("Supabase lead insert failed:", response.status);
       }
     } catch (error) {
       console.error("Lead capture unavailable:", error);
