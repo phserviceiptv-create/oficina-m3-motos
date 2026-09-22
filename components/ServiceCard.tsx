@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowUpRight, Gauge, Settings, Wrench, Cog } from "lucide-react";
-import { motion } from "framer-motion";
 
 const icons = { Wrench, Cog, Gauge, Settings };
 
@@ -19,10 +18,7 @@ export default function ServiceCard({ name, description, icon = "Wrench" }: Prop
   );
 
   return (
-    <motion.article
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.2 }}
-      className="group glass relative overflow-hidden rounded-3xl p-6"
+    <article className="group glass relative overflow-hidden rounded-3xl p-6"
     >
       <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-orange-500/10 blur-3xl transition group-hover:bg-orange-500/20" />
       <div className="relative">
@@ -43,6 +39,6 @@ export default function ServiceCard({ name, description, icon = "Wrench" }: Prop
           Solicitar este serviço <ArrowUpRight className="h-4 w-4" />
         </a>
       </div>
-    </motion.article>
+    </article>
   );
 }
