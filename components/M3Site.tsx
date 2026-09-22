@@ -115,7 +115,7 @@ export default function M3Site() {
 
         <div className="container relative grid min-h-[calc(92vh-80px)] items-center gap-12 py-20 lg:grid-cols-[1.05fr_.95fr]">
           <div>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/5 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-orange-300">
+            <div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/5 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-orange-300">
               <span className="h-2 w-2 rounded-full bg-orange-400 shadow-[0_0_14px_#ff6a00]" />
               Parque Dois Irmãos · Fortaleza
             </div>
