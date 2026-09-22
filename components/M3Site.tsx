@@ -59,11 +59,12 @@ type InstagramMedia = {
 function M3Logo({ large = false }: { large?: boolean }) {
   return (
     <span className={large ? "m3-logo m3-logo-lg" : "m3-logo"} aria-label="Oficina M3 Motos">
-      <span className="m3-logo-ring m3-logo-ring-outer" />
-      <span className="m3-logo-ring m3-logo-ring-inner" />
-      <span className="m3-logo-pistons">↗↙</span>
-      <span className="m3-logo-text">M3</span>
-      <span className="m3-logo-sub">MOTOS</span>
+      <img
+        src="/m3-logo-instagram.png"
+        alt=""
+        className="m3-logo-image"
+        draggable={false}
+      />
     </span>
   );
 }
