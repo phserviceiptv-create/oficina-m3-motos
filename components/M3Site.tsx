@@ -1,19 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import {
-  ArrowDown,
-  ArrowRight,
-  Check,
-  Clock3,
-  Instagram,
-  MapPin,
-  Menu,
-  MessageCircle,
-  ShieldCheck,
-  Sparkles,
-  X,
-} from "lucide-react";
+import { MessageCircle } from "lucide-react";
+
+function Glyph({ symbol, className = "" }: { symbol: string; className?: string }) {
+  return <span aria-hidden="true" className={`inline-flex items-center justify-center leading-none ${className}`}>{symbol}</span>;
+}
 import LeadForm from "./LeadForm";
 import ServiceCard from "./ServiceCard";
 
@@ -84,7 +75,7 @@ export default function M3Site() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-white"
             >
-              <Instagram className="h-4 w-4" /> @oficina_m3_motos
+              <Glyph symbol="◎" className="text-base" /> @oficina_m3_motos
             </a>
           </nav>
 
@@ -93,7 +84,7 @@ export default function M3Site() {
             className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 md:hidden"
             aria-label="Abrir menu"
           >
-            {open ? <X /> : <Menu />}
+            {open ? <Glyph symbol="×" className="text-2xl" /> : <Glyph symbol="☰" className="text-lg" />}
           </button>
         </div>
 
@@ -133,16 +124,16 @@ export default function M3Site() {
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a href="#contato" className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-4 font-black text-black transition hover:bg-orange-400">
-                Fazer orçamento <ArrowRight className="h-5 w-5" />
+                Fazer orçamento <Glyph symbol="→" className="text-xl" />
               </a>
               <a href="#servicos" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-6 py-4 font-bold text-white transition hover:bg-white/5">
-                Ver serviços <ArrowDown className="h-4 w-4" />
+                Ver serviços <Glyph symbol="↓" className="text-base" />
               </a>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-6 text-sm text-zinc-500">
-              <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-orange-400" /> Atendimento direto</span>
-              <span className="inline-flex items-center gap-2"><Clock3 className="h-4 w-4 text-orange-400" /> Seg–Sáb · 09h–21h</span>
+              <span className="inline-flex items-center gap-2"><Glyph symbol="✓" className="h-4 w-4 rounded-full border border-orange-400 text-[10px] text-orange-400" /> Atendimento direto</span>
+              <span className="inline-flex items-center gap-2"><Glyph symbol="◷" className="h-4 w-4 text-orange-400" /> Seg–Sáb · 09h–21h</span>
             </div>
           </div>
 
@@ -159,7 +150,7 @@ export default function M3Site() {
                     <p className="text-xs font-bold uppercase tracking-[.18em] text-orange-400">M3 MOTOS</p>
                     <p className="mt-1 text-xl font-black">Diagnóstico. Serviço. Confiança.</p>
                   </div>
-                  <Sparkles className="h-7 w-7 text-orange-400" />
+                  <Glyph symbol="✦" className="h-7 w-7 text-orange-400" />
                 </div>
               </div>
             </div>
@@ -233,7 +224,7 @@ export default function M3Site() {
                 ["Praticidade", "Orçamento rápido e atendimento pelo WhatsApp para você não perder tempo."],
               ].map(([title, text]) => (
                 <div key={title} className="flex gap-4">
-                  <div className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-orange-500 text-black"><Check className="h-4 w-4" /></div>
+                  <div className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-orange-500 text-black"><Glyph symbol="✓" className="h-4 w-4" /></div>
                   <div><h3 className="font-black">{title}</h3><p className="mt-1 text-sm leading-6 text-zinc-500">{text}</p></div>
                 </div>
               ))}
@@ -258,7 +249,7 @@ export default function M3Site() {
           <div>
             <p className="text-xs font-black uppercase tracking-[.2em] text-zinc-600">Endereço</p>
             <a className="mt-3 flex items-start gap-2 text-sm text-zinc-300 hover:text-white" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Rua%20101%2C%201305%20Parque%20Dois%20Irm%C3%A3os%20Fortaleza%20CE">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" /> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE
+              <Glyph symbol="⌖" className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" /> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE
             </a>
           </div>
           <div>
