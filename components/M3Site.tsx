@@ -1,14 +1,10 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
-
-function Glyph({ symbol, className = "" }: { symbol: string; className?: string }) {
-  return <span aria-hidden="true" className={`inline-flex items-center justify-center leading-none ${className}`}>{symbol}</span>;
-}
+import { useState } from "react";
 import LeadForm from "./LeadForm";
 import ServiceCard from "./ServiceCard";
 
-const fallbackServices = [
+const services = [
   {
     name: "Revisão Geral / Preventiva",
     description: "Checklist completo para manter sua moto segura, confiável e pronta para a rotina.",
@@ -32,26 +28,13 @@ const fallbackServices = [
 ];
 
 const portfolio = [
-  {
-    title: "Revisão & diagnóstico",
-    tag: "Precisão",
-    image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85",
-  },
-  {
-    title: "Motor em foco",
-    tag: "Manutenção",
-    image: "https://images.unsplash.com/photo-1558980394-0c0f2f7f5d2a?auto=format&fit=crop&w=1000&q=85",
-  },
-  {
-    title: "Detalhe que faz diferença",
-    tag: "Cuidado",
-    image: "https://images.unsplash.com/photo-1558980664-10ea7c2f2a9b?auto=format&fit=crop&w=1000&q=85",
-  },
+  ["Revisão & diagnóstico", "Precisão", "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85"],
+  ["Motor em foco", "Manutenção", "https://images.unsplash.com/photo-1558980394-0c0f2f7f5d2a?auto=format&fit=crop&w=1000&q=85"],
+  ["Detalhe que faz diferença", "Cuidado", "https://images.unsplash.com/photo-1558980664-10ea7c2f2a9b?auto=format&fit=crop&w=1000&q=85"],
 ];
 
 export default function M3Site() {
   const [open, setOpen] = useState(false);
-  const services = fallbackServices;
 
   return (
     <main>
@@ -69,22 +52,13 @@ export default function M3Site() {
             <a href="#servicos" className="transition hover:text-white">Serviços</a>
             <a href="#portfolio" className="transition hover:text-white">Motos que cuidamos</a>
             <a href="#contato" className="transition hover:text-white">Contato</a>
-            <a
-              href="https://www.instagram.com/oficina_m3_motos/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-white"
-            >
-              <Glyph symbol="◎" className="text-base" /> @oficina_m3_motos
+            <a href="https://www.instagram.com/oficina_m3_motos/" target="_blank" rel="noreferrer" className="text-white transition hover:text-orange-400">
+              ◎ @oficina_m3_motos
             </a>
           </nav>
 
-          <button
-            onClick={() => setOpen(!open)}
-            className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 md:hidden"
-            aria-label="Abrir menu"
-          >
-            {open ? <Glyph symbol="×" className="text-2xl" /> : <Glyph symbol="☰" className="text-lg" />}
+          <button onClick={() => setOpen((value) => !value)} className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-xl md:hidden" aria-label="Abrir menu">
+            {open ? "×" : "☰"}
           </button>
         </div>
 
@@ -103,16 +77,14 @@ export default function M3Site() {
       <section className="grain relative min-h-[92vh] overflow-hidden pt-20">
         <div className="hero-grid absolute inset-0" />
         <div className="absolute right-[-10%] top-[18%] h-[420px] w-[420px] rounded-full bg-orange-500/10 blur-[110px]" />
-
         <div className="container relative grid min-h-[calc(92vh-80px)] items-center gap-12 py-20 lg:grid-cols-[1.05fr_.95fr]">
           <div>
-            <div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/5 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-orange-300">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/5 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-orange-300">
               <span className="h-2 w-2 rounded-full bg-orange-400 shadow-[0_0_14px_#ff6a00]" />
               Parque Dois Irmãos · Fortaleza
             </div>
 
-            <h1 className="max-w-4xl text-5xl font-black leading-[.95] tracking-[-.05em] sm:text-7xl lg:text-[92px]"
-            >
+            <h1 className="max-w-4xl text-5xl font-black leading-[.95] tracking-[-.05em] sm:text-7xl lg:text-[92px]">
               Sua moto.
               <br />
               <span className="text-gradient">Em boas mãos.</span>
@@ -124,33 +96,28 @@ export default function M3Site() {
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a href="#contato" className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-4 font-black text-black transition hover:bg-orange-400">
-                Fazer orçamento <Glyph symbol="→" className="text-xl" />
+                Fazer orçamento <span aria-hidden>→</span>
               </a>
               <a href="#servicos" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-6 py-4 font-bold text-white transition hover:bg-white/5">
-                Ver serviços <Glyph symbol="↓" className="text-base" />
+                Ver serviços <span aria-hidden>↓</span>
               </a>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-6 text-sm text-zinc-500">
-              <span className="inline-flex items-center gap-2"><Glyph symbol="✓" className="h-4 w-4 rounded-full border border-orange-400 text-[10px] text-orange-400" /> Atendimento direto</span>
-              <span className="inline-flex items-center gap-2"><Glyph symbol="◷" className="h-4 w-4 text-orange-400" /> Seg–Sáb · 09h–21h</span>
+              <span className="inline-flex items-center gap-2"><b className="text-orange-400">✓</b> Atendimento direto</span>
+              <span className="inline-flex items-center gap-2"><b className="text-orange-400">◷</b> Seg–Sáb · 09h–21h</span>
             </div>
           </div>
 
           <div className="relative">
             <div className="metal orange-glow relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10">
-              <div
-                className="absolute inset-0 bg-cover bg-center opacity-70 mix-blend-luminosity"
-                style={{ backgroundImage: "url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=90)" }}
-              />
+              <div className="absolute inset-0 bg-cover bg-center opacity-70 mix-blend-luminosity" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=90)" }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
               <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-black/65 p-5 backdrop-blur-md">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[.18em] text-orange-400">M3 MOTOS</p>
-                    <p className="mt-1 text-xl font-black">Diagnóstico. Serviço. Confiança.</p>
-                  </div>
-                  <Glyph symbol="✦" className="h-7 w-7 text-orange-400" />
+                <p className="text-xs font-bold uppercase tracking-[.18em] text-orange-400">M3 MOTOS</p>
+                <div className="mt-1 flex items-center justify-between gap-4">
+                  <p className="text-xl font-black">Diagnóstico. Serviço. Confiança.</p>
+                  <span className="text-2xl text-orange-400">✦</span>
                 </div>
               </div>
             </div>
@@ -171,7 +138,6 @@ export default function M3Site() {
             </div>
             <p className="max-w-sm text-sm leading-6 text-zinc-500">Do preventivo ao reparo, você sabe o que está sendo feito e por quê.</p>
           </div>
-
           <div className="grid gap-4 md:grid-cols-2">
             {services.map((service) => <ServiceCard key={service.name} {...service} />)}
           </div>
@@ -183,28 +149,16 @@ export default function M3Site() {
           <div className="mb-12">
             <span className="text-xs font-black uppercase tracking-[.25em] text-orange-400">Motos que cuidamos</span>
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">Trabalho que aparece nos detalhes.</h2>
-            <p className="mt-4 max-w-2xl text-zinc-400">
-              O portfólio fica preparado para receber as mídias do Instagram da oficina assim que a integração oficial for configurada.
-            </p>
+            <p className="mt-4 max-w-2xl text-zinc-400">O portfólio fica preparado para receber as mídias do Instagram da oficina assim que a integração oficial for configurada.</p>
           </div>
-
           <div className="grid gap-4 md:grid-cols-3">
-            {portfolio.map((item) => (
-              <a
-                key={item.title}
-                href="https://www.instagram.com/oficina_m3_motos/"
-                target="_blank"
-                rel="noreferrer"
-                className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10"
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${item.image})` }}
-                />
+            {portfolio.map(([title, tag, image]) => (
+              <a key={title} href="https://www.instagram.com/oficina_m3_motos/" target="_blank" rel="noreferrer" className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10">
+                <div className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${image})` }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 <div className="absolute inset-x-5 bottom-5">
-                  <span className="text-xs font-bold uppercase tracking-[.18em] text-orange-400">{item.tag}</span>
-                  <h3 className="mt-1 text-xl font-black">{item.title}</h3>
+                  <span className="text-xs font-bold uppercase tracking-[.18em] text-orange-400">{tag}</span>
+                  <h3 className="mt-1 text-xl font-black">{title}</h3>
                 </div>
               </a>
             ))}
@@ -224,16 +178,13 @@ export default function M3Site() {
                 ["Praticidade", "Orçamento rápido e atendimento pelo WhatsApp para você não perder tempo."],
               ].map(([title, text]) => (
                 <div key={title} className="flex gap-4">
-                  <div className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-orange-500 text-black"><Glyph symbol="✓" className="h-4 w-4" /></div>
+                  <div className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-orange-500 text-black">✓</div>
                   <div><h3 className="font-black">{title}</h3><p className="mt-1 text-sm leading-6 text-zinc-500">{text}</p></div>
                 </div>
               ))}
             </div>
           </div>
-
-          <div id="contato">
-            <LeadForm />
-          </div>
+          <div id="contato"><LeadForm /></div>
         </div>
       </section>
 
@@ -249,27 +200,21 @@ export default function M3Site() {
           <div>
             <p className="text-xs font-black uppercase tracking-[.2em] text-zinc-600">Endereço</p>
             <a className="mt-3 flex items-start gap-2 text-sm text-zinc-300 hover:text-white" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Rua%20101%2C%201305%20Parque%20Dois%20Irm%C3%A3os%20Fortaleza%20CE">
-              <Glyph symbol="⌖" className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" /> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE
+              <span className="mt-0.5 text-orange-400">⌖</span> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE
             </a>
           </div>
           <div>
             <p className="text-xs font-black uppercase tracking-[.2em] text-zinc-600">Conecte-se</p>
             <div className="mt-3 flex gap-3">
               <a href="https://wa.me/5585992913882" target="_blank" rel="noreferrer" className="rounded-xl border border-white/10 p-3 transition hover:border-orange-500/40 hover:text-orange-400"><MessageCircle className="h-5 w-5" /></a>
-              <a href="https://www.instagram.com/oficina_m3_motos/" target="_blank" rel="noreferrer" className="rounded-xl border border-white/10 p-3 transition hover:border-orange-500/40 hover:text-orange-400"><Instagram className="h-5 w-5" /></a>
+              <a href="https://www.instagram.com/oficina_m3_motos/" target="_blank" rel="noreferrer" className="rounded-xl border border-white/10 p-3 text-lg transition hover:border-orange-500/40 hover:text-orange-400">◎</a>
             </div>
           </div>
         </div>
         <div className="container mt-10 border-t border-white/5 pt-6 text-xs text-zinc-600">© {new Date().getFullYear()} Oficina M3 Motos. Todos os direitos reservados.</div>
       </footer>
 
-      <a
-        href="https://wa.me/5585992913882?text=Olá%20Lucas!%20Vim%20pelo%20site%20da%20Oficina%20M3%20Motos%20e%20quero%20um%20orçamento."
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Falar no WhatsApp"
-        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-black shadow-2xl shadow-green-500/20 transition hover:scale-105"
-      >
+      <a href="https://wa.me/5585992913882?text=Olá%20Lucas!%20Vim%20pelo%20site%20da%20Oficina%20M3%20Motos%20e%20quero%20um%20orçamento." target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-black shadow-2xl shadow-green-500/20 transition hover:scale-105">
         <MessageCircle className="h-7 w-7" />
       </a>
     </main>
