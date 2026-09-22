@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowRight,
@@ -119,18 +118,14 @@ export default function M3Site() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/5 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-orange-300">
               <span className="h-2 w-2 rounded-full bg-orange-400 shadow-[0_0_14px_#ff6a00]" />
               Parque Dois Irmãos · Fortaleza
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: .08 }}
-              className="max-w-4xl text-5xl font-black leading-[.95] tracking-[-.05em] sm:text-7xl lg:text-[92px]"
+            <h1 className="max-w-4xl text-5xl font-black leading-[.95] tracking-[-.05em] sm:text-7xl lg:text-[92px]"
             >
               Sua moto.
               <br />
               <span className="text-gradient">Em boas mãos.</span>
-            </motion.h1>
+            </h1>
 
             <p className="mt-7 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg">
               Manutenção sem enrolação, diagnóstico direto e cuidado de quem entende que moto boa precisa de serviço bem feito.
