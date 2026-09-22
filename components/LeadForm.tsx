@@ -17,7 +17,8 @@ export default function LeadForm({ serviceName = "" }: Props) {
     event.preventDefault();
     setStatus("loading");
 
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const name = String(form.get("name") || "").trim();
     const phone = String(form.get("phone") || "").trim();
     const motorcycleModel = String(form.get("motorcycleModel") || "").trim();
@@ -39,8 +40,6 @@ export default function LeadForm({ serviceName = "" }: Props) {
     );
 
     try {
-      // This client uses the Supabase publishable key and therefore remains
-      // protected by the leads table RLS policy.
       const supabase = getSupabaseBrowserClient();
       const { error } = await supabase.from("leads").insert({
         name: name.slice(0, 120),
@@ -57,10 +56,7 @@ export default function LeadForm({ serviceName = "" }: Props) {
     } catch (error) {
       console.error("Lead capture unavailable:", error);
     } finally {
-      // Never block a potential customer because a backend service is
-      // temporarily unavailable. WhatsApp remains the primary conversion path.
-      setStatus("success");
-      form.reset();
+      formElement.reset();
       window.location.href = `https://wa.me/${WHATSAPP}?text=${text}`;
     }
   }
