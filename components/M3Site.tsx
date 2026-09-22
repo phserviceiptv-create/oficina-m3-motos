@@ -402,7 +402,7 @@ export default function M3Site() {
             <div className="mt-8 grid gap-3 text-sm text-zinc-400">
               <p className="flex items-center gap-3"><span className="text-orange-400">⌖</span> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE</p>
               <p className="flex items-center gap-3"><span className="text-orange-400">◷</span> Segunda a sábado · 09h às 21h</p>
-              <p className="flex items-center gap-3"><MessageCircle className="h-4 w-4 text-orange-400" /> WhatsApp · (85) 99291-3882</p>
+              <p className="flex items-center gap-3"><span className="text-orange-400">◉</span> WhatsApp · (85) 99291-3882</p>
             </div>
           </div>
           <LeadForm />
@@ -426,7 +426,7 @@ export default function M3Site() {
         aria-label="Falar no WhatsApp"
         className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-black shadow-2xl transition hover:scale-105"
       >
-        <MessageCircle className="h-6 w-6" />
+        <span aria-hidden="true">◉</span>
       </a>
     </main>
   );
