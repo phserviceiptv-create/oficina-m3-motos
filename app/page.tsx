@@ -1,5 +1,5 @@
-import M3Site from "../components/M3Site";
+import LeadForm from "../components/LeadForm";
 
 export default function Home() {
-  return <M3Site />;
+  return <main style={{ padding: 40, background: "#070707", minHeight: "100vh" }}><LeadForm /></main>;
 }
