@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { getSupabaseBrowserClient } from "../lib/supabase/client";
 
 const WHATSAPP = "5585992913882";
 
