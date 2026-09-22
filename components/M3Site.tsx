@@ -1,19 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Clock3,
-  Cog,
-  Gauge,
-  Instagram,
-  MapPin,
-  MessageCircle,
-  Settings,
-  Wrench,
-} from "lucide-react";
 import LeadForm from "./LeadForm";
 import ServiceCard from "./ServiceCard";
 
@@ -176,7 +163,7 @@ export default function M3Site() {
             rel="noreferrer"
             className="hidden items-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-black text-black transition hover:bg-orange-400 sm:flex"
           >
-            <MessageCircle className="h-4 w-4" />
+            <span aria-hidden="true">◉</span>
             WhatsApp
           </a>
 
@@ -230,7 +217,7 @@ export default function M3Site() {
                 className="group flex items-center gap-3 rounded-xl bg-orange-500 px-6 py-4 font-black text-black transition hover:-translate-y-0.5 hover:bg-orange-400"
               >
                 Pedir orçamento
-                <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
+                <span aria-hidden="true">→</span>
               </a>
               <a
                 href="#pecas"
@@ -241,8 +228,8 @@ export default function M3Site() {
             </div>
 
             <div className="mt-9 flex flex-wrap gap-5 text-xs font-bold uppercase tracking-[.14em] text-zinc-500">
-              <span className="inline-flex items-center gap-2"><Clock3 className="h-4 w-4 text-orange-400" /> Seg–Sáb · 09h–21h</span>
-              <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-orange-400" /> Parque Dois Irmãos</span>
+              <span className="inline-flex items-center gap-2"><span className="text-orange-400">◷</span> Seg–Sáb · 09h–21h</span>
+              <span className="inline-flex items-center gap-2"><span className="text-orange-400">⌖</span> Parque Dois Irmãos</span>
             </div>
           </div>
 
@@ -277,8 +264,8 @@ export default function M3Site() {
                     ))}
                   </div>
                   <div className="flex gap-2">
-                    <button onClick={() => setActiveSlide((activeSlide - 1 + partsCarousel.length) % partsCarousel.length)} className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-black/50 backdrop-blur hover:border-orange-400" aria-label="Imagem anterior"><ChevronLeft /></button>
-                    <button onClick={() => setActiveSlide((activeSlide + 1) % partsCarousel.length)} className="grid h-11 w-11 place-items-center rounded-full bg-orange-500 text-black hover:bg-orange-400" aria-label="Próxima imagem"><ChevronRight /></button>
+                    <button onClick={() => setActiveSlide((activeSlide - 1 + partsCarousel.length) % partsCarousel.length)} className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-black/50 backdrop-blur hover:border-orange-400" aria-label="Imagem anterior"><span aria-hidden="true">←</span></button>
+                    <button onClick={() => setActiveSlide((activeSlide + 1) % partsCarousel.length)} className="grid h-11 w-11 place-items-center rounded-full bg-orange-500 text-black hover:bg-orange-400" aria-label="Próxima imagem"><span aria-hidden="true">→</span></button>
                   </div>
                 </div>
               </div>
@@ -316,7 +303,7 @@ export default function M3Site() {
               Um carrossel visual com componentes de moto para deixar a página mais técnica, premium e conectada ao serviço da oficina.
             </p>
             <a href="#contato" className="mt-7 inline-flex items-center gap-2 font-black text-orange-400 hover:text-orange-300">
-              Consultar peça ou serviço <ArrowRight className="h-4 w-4" />
+              Consultar peça ou serviço <span aria-hidden="true">→</span>
             </a>
           </div>
 
@@ -352,7 +339,7 @@ export default function M3Site() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-black hover:border-orange-500/50"
             >
-              <Instagram className="h-4 w-4" />
+              <span aria-hidden="true">◎</span>
               @oficina_m3_motos
             </a>
           </div>
@@ -397,7 +384,7 @@ export default function M3Site() {
                     className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[.025] p-5 transition hover:border-orange-500/40"
                   >
                     <span><span className="block text-xs font-black uppercase tracking-[.18em] text-orange-400">0{index + 1}</span><strong className="mt-1 block">{item}</strong></span>
-                    <ArrowRight className="h-5 w-5 text-zinc-500" />
+                    <span className="text-zinc-500" aria-hidden="true">→</span>
                   </a>
                 ))}
               </div>
@@ -413,8 +400,8 @@ export default function M3Site() {
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">Fale com a Oficina M3.</h2>
             <p className="mt-5 max-w-xl text-zinc-400">Informe os dados básicos. O próximo passo é direto pelo WhatsApp.</p>
             <div className="mt-8 grid gap-3 text-sm text-zinc-400">
-              <p className="flex items-center gap-3"><MapPin className="h-4 w-4 text-orange-400" /> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE</p>
-              <p className="flex items-center gap-3"><Clock3 className="h-4 w-4 text-orange-400" /> Segunda a sábado · 09h às 21h</p>
+              <p className="flex items-center gap-3"><span className="text-orange-400">⌖</span> Rua 101, nº 1305 · Parque Dois Irmãos · Fortaleza/CE</p>
+              <p className="flex items-center gap-3"><span className="text-orange-400">◷</span> Segunda a sábado · 09h às 21h</p>
               <p className="flex items-center gap-3"><MessageCircle className="h-4 w-4 text-orange-400" /> WhatsApp · (85) 99291-3882</p>
             </div>
           </div>
